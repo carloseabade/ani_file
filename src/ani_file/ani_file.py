@@ -115,7 +115,11 @@ class ani_read:
             #check if frame is .ico or .cur 
             is_ico= True if struct.unpack_from("<H", frame,offset=2)==1 else False
             
-            path = outputpath+"\\"+filenameprefix+str(id)+(".ico" if is_ico else ".cur")
+            path = filenameprefix+str(id)+(".ico" if is_ico else ".cur")
+            if isinstance(path, bytes):
+                path = path.decode("utf-8", errors="ignore")  # Remove caracteres inválidos
+            path = path.replace("\x00", "")  # Remove null bytes
+
             new_frame = builtins.open(path, "wb")
             new_frame.write(frame)
             new_frame.close()
