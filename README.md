@@ -1,3 +1,19 @@
+Copy the .ani file you want to extract the frames to this folder.
+Set the name of the .ani file on the main.py
+Run python 3.12
+```bash
+docker run --rm -v $(pwd):/app -w /app -it python:3.12 bash
+```
+Inside the container, install Pillow dependency
+```bash
+pip install Pillow
+```
+Then run main.py:
+```bash
+python main.py
+```
+
+
 # ani_file 
 .ani file (animated cursor) reader and writer written in python 3.
 
